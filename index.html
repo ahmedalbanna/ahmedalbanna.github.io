@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أحمد البنأ | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #334155;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --green: #4ade80;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; transition: .2s; }
+    a:hover { color: #fff; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--surface2);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .hero .contact-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .hero .contact-row a {
+      color: var(--muted);
+      font-size: .95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero .contact-row a:hover { color: var(--accent); }
+    .badge {
+      display: inline-block;
+      background: var(--surface2);
+      color: var(--muted);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: .85rem;
+      margin: 4px;
+    }
+
+    /* Sections */
+    section { padding: 50px 0; }
+    section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--surface2);
+    }
+    .skill-card h3 { font-size: 1rem; color: var(--accent); margin-bottom: 10px; }
+    .skill-card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-card .tags span {
+      background: var(--surface2);
+      padding: 3px 12px;
+      border-radius: 14px;
+      font-size: .8rem;
+      color: var(--text);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--surface2);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: transform .2s, border-color .2s;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .project-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 10px;
+    }
+    .project-card .techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .project-card .techs span {
+      background: rgba(56, 189, 248, .12);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: .75rem;
+    }
+    .project-card .links { display: flex; gap: 12px; }
+    .project-card .links a {
+      font-size: .85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Experience */
+    .exp-item {
+      background: var(--surface);
+      border: 1px solid var(--surface2);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 14px;
+    }
+    .exp-item .exp-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .exp-item h3 { font-size: 1.05rem; }
+    .exp-item .period { color: var(--muted); font-size: .85rem; }
+    .exp-item ul { padding-right: 20px; color: var(--muted); font-size: .9rem; }
+    .exp-item ul li { margin-bottom: 4px; }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      padding: 24px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--surface2);
+    }
+    .stat-item { text-align: center; }
+    .stat-item .num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat-item .label { color: var(--muted); font-size: .85rem; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--surface2);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .contact-row { flex-direction: column; align-items: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>أحمد البنأ</h1>
+  <div class="subtitle">Full Stack Developer · UI/UX Designer · ERP Consultant</div>
+  <div class="contact-row">
+    <a href="mailto:ahmedalbanna966@gmail.com">✉ ahmedalbanna966@gmail.com</a>
+    <a href="tel:+967772909766">📞 +967 772 909 766</a>
+    <a href="https://github.com/ahmedalbanna" target="_blank">🐙 github.com/ahmedalbanna</a>
+  </div>
+  <div style="margin-top: 14px;">
+    <span class="badge">📍 صنعاء، اليمن</span>
+    <span class="badge">📅 04 أكتوبر 1997</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- About -->
+<section>
+  <h2>عنّي</h2>
+  <p style="color:var(--muted); font-size:1rem;">
+    مطور Full Stack ومصمم UI/UX بخبرة +3 سنوات في بناء تطبيقات الويب والموبايل. متخصص في
+    <strong>NestJS</strong>، <strong>React/Next.js</strong>، <strong>Flutter</strong>، و <strong>Kotlin</strong>.
+    أعمل على تطوير حلول ERP (Frappe/ERPNext) وبناء منتجات رقمية مدعومة بالذكاء الاصطناعي.
+    أمتلك أكثر من <strong>90 مشروعاً أصلياً</strong> على GitHub.
+  </p>
+</section>
+
+<!-- Stats -->
+<section>
+  <div class="stats">
+    <div class="stat-item">
+      <div class="num">495+</div>
+      <div class="label">مستودع GitHub</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">90+</div>
+      <div class="label">مشروع أصلي</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">33+</div>
+      <div class="label">تطبيق MVP</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">430+</div>
+      <div class="label">اختبار (Safar)</div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section>
+  <h2>المهارات التقنية</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>🎨 Frontend</h3>
+      <div class="tags">
+        <span>Next.js</span><span>React</span><span>TypeScript</span>
+        <span>Vue.js</span><span>Tailwind CSS</span><span>Radix UI</span>
+        <span>Ant Design</span><span>Zustand</span><span>TanStack Query</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>⚙️ Backend</h3>
+      <div class="tags">
+        <span>NestJS</span><span>Node.js</span><span>FastAPI</span>
+        <span>Laravel</span><span>Rust (Actix/Axum)</span><span>Prisma</span>
+        <span>Drizzle ORM</span><span>PostgreSQL</span><span>Redis</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>📱 Mobile</h3>
+      <div class="tags">
+        <span>Flutter</span><span>React Native</span><span>Kotlin</span>
+        <span>Jetpack Compose</span><span>BLoC</span><span>Riverpod</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🤖 AI & Tools</h3>
+      <div class="tags">
+        <span>Google Genkit</span><span>TensorFlow Lite</span>
+        <span>ONNX Runtime</span><span>whisper-rs</span><span>Figma</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🗄️ Databases</h3>
+      <div class="tags">
+        <span>PostgreSQL</span><span>MySQL</span><span>SQLite</span>
+        <span>MongoDB</span><span>Firebase</span><span>Qdrant</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🐳 DevOps</h3>
+      <div class="tags">
+        <span>Docker</span><span>GitHub Actions</span><span>Linux</span>
+        <span>Turborepo</span><span>Nginx</span><span>Supervisor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section>
+  <h2>المشاريع المميزة</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <h3>📝 Arkan (أركان)</h3>
+      <p>منصة كتابة متكاملة بالذكاء الاصطناعي — 23+ أداة كتابة، كشف الانتحال، تصدير وثائق.</p>
+      <div class="techs">
+        <span>Next.js 15</span><span>Firebase</span><span>Genkit</span><span>Qdrant</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/arkan" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🚍 Safar (سفري)</h3>
+      <p>منصة حجز تذاكر الباصات — 430+ اختبار، QR code، Socket.io للتحديث المباشر.</p>
+      <div class="techs">
+        <span>NestJS</span><span>Flutter</span><span>React</span><span>PostgreSQL</span><span>Socket.io</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Safar-" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🤲 Birr (بِرّ)</h3>
+      <p>منصة الصدقات والزكاة الرقمية — 4 مكونات: Backend + تطبيق متبرع + تطبيق مستفيد + لوحة تحكم.</p>
+      <div class="techs">
+        <span>NestJS</span><span>React Native</span><span>PostgreSQL</span><span>Docker</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Birr" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🧠 MVP Monorepo</h3>
+      <p>أكثر من 33 تطبيق Full-Stack في مشروع واحد — Zina, Luqahi, Hawwel, Dawaey, Yemen-HR وغيرها.</p>
+      <div class="techs">
+        <span>Turborepo</span><span>React</span><span>Flutter</span><span>NestJS</span><span>TypeScript</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna?tab=repositories" target="_blank">جميع المشاريع →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🎤 صدى (Sada)</h3>
+      <p>مساعد صوتي مدمج بالذكاء الاصطناعي — يعمل محلياً بالكامل باستخدام Rust.</p>
+      <div class="techs">
+        <span>Rust</span><span>whisper-rs</span><span>ONNX Runtime</span><span>Tokio</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/sada" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>💬 Chat-Agent</h3>
+      <p>وكيل محادثة ذكي بالذكاء الاصطناعي مع real-time syntax highlighting.</p>
+      <div class="techs">
+        <span>Kotlin</span><span>AI</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Chat-Agent" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🏗️ BinaaTrack</h3>
+      <p>نظام إدارة العقود والمشاريع الإنشائية مع تتبع الميزانية والجداول الزمنية.</p>
+      <div class="techs">
+        <span>TypeScript</span><span>NestJS</span><span>React</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/BinaaTrack" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>📦 LogiTrack-PRO</h3>
+      <p>نظام إدارة سلاسل الإمداد والمخزون متعدد المواقع.</p>
+      <div class="techs">
+        <span>TypeScript</span><span>NestJS</span><span>Prisma</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/LogiTrack-PRO" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🖼️ Behgeh (بهجة)</h3>
+      <p>منصة متكاملة لحجز قاعات ومناسبات الأفراح بدعم الذكاء الاصطناعي.</p>
+      <div class="techs">
+        <span>Kotlin</span><span>AI</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Behgeh" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🔍 AI-Object-Scanner</h3>
+      <p>مسح الأشياء بالكاميرا وتحديدها بالذكاء الاصطناعي.</p>
+      <div class="techs">
+        <span>Kotlin</span><span>TensorFlow Lite</span><span>CameraX</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/AI-Object-Scanner" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🌿 Nature-sounds</h3>
+      <p>مشغل أصوات الطبيعة مع جدول تشغيل متكيف وجدول زمني.</p>
+      <div class="techs">
+        <span>Kotlin</span><span>Jetpack Compose</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Nature-sounds" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🏛️ Campus-Parking-Hub</h3>
+      <p>نظام حجز مواقف الحرم الجامعي الذكي.</p>
+      <div class="techs">
+        <span>Kotlin</span><span>Firebase</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Campus-Parking-Hub" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🌐 webpage-to-figma</h3>
+      <p>Chrome Extension + Figma Plugin لاستيراد صفحات الويب إلى Figma. MIT License.</p>
+      <div class="techs">
+        <span>TypeScript</span><span>Chrome MV3</span><span>Figma Plugin API</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/webpage-to-figma" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>📄 md-to-doc</h3>
+      <p>أداة لتحويل ملفات Markdown إلى مستندات Word.</p>
+      <div class="techs">
+        <span>Python</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/md-to-doc" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>⚙️ Frappe Installation Guide</h3>
+      <p>دليل كامل لتثبيت Frappe/ERPNext على خوادم Ubuntu — ⭐ 6 على GitHub.</p>
+      <div class="techs">
+        <span>Frappe</span><span>ERPNext</span><span>Linux</span><span>Nginx</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/Frappe-installation-Guide" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>🏥 Dialysis Center (Frappe)</h3>
+      <p>نظام إدارة مركز غسيل كلى مبني على Frappe Framework.</p>
+      <div class="techs">
+        <span>Frappe</span><span>Python</span><span>ERPNext</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ahmedalbanna/dialysis_center_using_frappe_framework" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center; margin-top:20px;">
+    <a href="https://github.com/ahmedalbanna?tab=repositories" target="_blank" style="display:inline-block; background:var(--surface2); padding:10px 28px; border-radius:var(--radius); font-weight:600;">
+      عرض جميع المستودعات (495+) →
+    </a>
+  </div>
+</section>
+
+<!-- Experience -->
+<section>
+  <h2>الخبرة العملية</h2>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <h3>مطور ERP / محلل أنظمة — CyberERPS</h3>
+      <span class="period">عمل مقاولة</span>
+    </div>
+    <ul>
+      <li>تثبيت وإعداد Frappe/ERPNext على خوادم Ubuntu مع Nginx و Supervisor</li>
+      <li>تخصيص ERPNext لتلبية احتياجات العملاء</li>
+      <li>إدارة 1-3 عملاء متزامنين</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <h3>مصمم UI/UX + مطور Figma Plugin</h3>
+      <span class="period">فريلانسر · +3 سنوات</span>
+    </div>
+    <ul>
+      <li>تصميم واجهات مستخدم احترافية باستخدام Figma</li>
+      <li>بناء وإدارة Design Systems</li>
+      <li>تطوير امتدادات Figma (TypeScript)</li>
+      <li>تحويل التصاميم إلى كود (HTML/CSS, React, Flutter)</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <h3>محلل أنظمة</h3>
+      <span class="period">فريلانسر · +1-2 سنوات</span>
+    </div>
+    <ul>
+      <li>تحليل المتطلبات وكتابة مستندات SRS/SDD</li>
+      <li>تصميم معمارية الأنظمة وأنماط التصميم</li>
+      <li>إنشاء رسومات UML و C4 Model</li>
+      <li>تصميم قواعد البيانات و APIs</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <h3>مطور Full Stack — مشاريع متنوعة</h3>
+      <span class="period">عمل حر · صنعاء، اليمن</span>
+    </div>
+    <ul>
+      <li>بناء +60 مشروع في الويب والموبايل والـ AI</li>
+      <li>تطوير تطبيقات متكاملة للأسواق اليمنية والعربية</li>
+      <li>استخدام أحدث التقنيات: Next.js, NestJS, Flutter, Kotlin, Rust</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section>
+  <h2>الشهادات</h2>
+  <div style="display:flex; flex-wrap:wrap; gap:8px;">
+    <span class="badge" style="background:var(--surface); color:var(--green); border:1px solid var(--green); padding:6px 16px;">Software Architect</span>
+    <span class="badge" style="background:var(--surface); color:var(--green); border:1px solid var(--green); padding:6px 16px;">Requirements Elicitation & Analysis</span>
+    <span class="badge" style="background:var(--surface); color:var(--green); border:1px solid var(--green); padding:6px 16px;">API Design</span>
+    <span class="badge" style="background:var(--surface); color:var(--green); border:1px solid var(--green); padding:6px 16px;">Prompt Engineering</span>
+    <span class="badge" style="background:var(--surface); color:var(--green); border:1px solid var(--green); padding:6px 16px;">Frappe Framework</span>
+    <span class="badge" style="background:var(--surface); color:var(--green); border:1px solid var(--green); padding:6px 16px;">Computer Science</span>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>© 2026 أحمد مرتضى أحمد علوان البنأ · صنعاء، اليمن</p>
+  <p style="margin-top:4px;">
+    <a href="https://github.com/ahmedalbanna" target="_blank">GitHub</a> ·
+    <a href="mailto:ahmedalbanna966@gmail.com">البريد الإلكتروني</a>
+  </p>
+</footer>
+
+</body>
+</html>
